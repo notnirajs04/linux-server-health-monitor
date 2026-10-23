@@ -1,0 +1,5 @@
+2026-10-23 09:00:00 INFO monitor started
+2026-10-23 09:01:12 WARNING disk space is getting low
+2026-10-23 09:02:30 ERROR unable to reach example service
+2026-10-23 09:03:44 INFO retry scheduled
+2026-10-23 09:04:01 CRITICAL database connection pool exhausted

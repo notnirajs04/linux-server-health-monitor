@@ -1,0 +1,29 @@
+{
+  "thresholds": {
+    "cpu": 80,
+    "memory": 80,
+    "disk": 85
+  },
+  "log_file": "logs/sample.log",
+  "log_levels": ["ERROR", "WARNING", "CRITICAL"],
+  "services": ["cron", "ssh"],
+  "reports_dir": "reports",
+  "network_checks": {
+    "enabled": true,
+    "timeout_seconds": 3,
+    "dns_hosts": ["example.com"],
+    "tcp_targets": [{"host": "example.com", "port": 443}],
+    "http_endpoints": ["https://example.com"]
+  },
+  "backup_checks": {
+    "enabled": false,
+    "targets": [
+      {
+        "name": "sample_backup",
+        "path": "backups/sample_backup.zip",
+        "max_age_hours": 24,
+        "allow_empty": false
+      }
+    ]
+  }
+}
