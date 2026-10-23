@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Linux Server Monitor | Verification Results</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17212b;
+      --muted: #68737d;
+      --paper: #f5f7f8;
+      --panel: #ffffff;
+      --line: #d9e0e4;
+      --green: #197a58;
+      --amber: #b66a16;
+      --blue: #2b5d8a;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    main { max-width: 1080px; margin: 0 auto; padding: 54px; }
+    header { display: flex; justify-content: space-between; gap: 32px; align-items: end; margin-bottom: 34px; }
+    h1 { font-size: 48px; line-height: 1; margin: 0 0 12px; letter-spacing: -1px; }
+    p { color: var(--muted); font-family: Arial, sans-serif; line-height: 1.5; margin: 0; }
+    .eyebrow { color: var(--blue); font: 700 12px Arial, sans-serif; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+    .stamp { color: var(--muted); font: 13px Arial, sans-serif; text-align: right; white-space: nowrap; }
+    .summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 28px; }
+    .metric, .environment { background: var(--panel); border: 1px solid var(--line); padding: 22px; }
+    .metric strong { display: block; font: 700 32px Arial, sans-serif; margin-top: 8px; }
+    .metric span, .label { color: var(--muted); font: 12px Arial, sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+    .healthy { color: var(--green); }
+    .warning { color: var(--amber); }
+    .environments { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .environment h2 { font-size: 26px; margin: 0 0 18px; }
+    .status { display: inline-block; border: 1px solid currentColor; padding: 7px 10px; font: 700 12px Arial, sans-serif; letter-spacing: 1px; text-transform: uppercase; }
+    dl { display: grid; grid-template-columns: 1fr auto; gap: 12px 20px; margin: 22px 0 0; font-family: Arial, sans-serif; }
+    dt { color: var(--muted); }
+    dd { font-weight: 700; margin: 0; }
+    footer { border-top: 1px solid var(--line); margin-top: 28px; padding-top: 18px; font: 12px Arial, sans-serif; color: var(--muted); }
+    @media (max-width: 720px) {
+      main { padding: 28px 18px; }
+      header { display: block; }
+      .stamp { text-align: left; margin-top: 18px; }
+      h1 { font-size: 38px; }
+      .summary, .environments { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <div class="eyebrow">Verification snapshot</div>
+        <h1>Linux Server Monitor</h1>
+        <p>Cross-platform health, log, network, and backup diagnostics.</p>
+      </div>
+      <div class="stamp">Python 3.11+ &middot; 23 automated tests</div>
+    </header>
+
+    <section class="summary" aria-label="Summary metrics">
+      <div class="metric"><span>Tests</span><strong class="healthy">23 passed</strong></div>
+      <div class="metric"><span>Log matches</span><strong>3</strong></div>
+      <div class="metric"><span>Network checks</span><strong class="healthy">3 healthy</strong></div>
+      <div class="metric"><span>Backup policy</span><strong>Read-only</strong></div>
+    </section>
+
+    <section class="environments" aria-label="Environment results">
+      <article class="environment">
+        <h2>Ubuntu through WSL</h2>
+        <span class="status healthy">Healthy</span>
+        <dl>
+          <dt>Memory</dt><dd>7.6%</dd>
+          <dt>CPU</dt><dd>0.0%</dd>
+          <dt>Disk</dt><dd>0.2%</dd>
+          <dt>Services</dt><dd>cron active</dd>
+          <dt>HTTPS</dt><dd>200 OK</dd>
+        </dl>
+      </article>
+      <article class="environment">
+        <h2>Windows development</h2>
+        <span class="status warning">Warning</span>
+        <dl>
+          <dt>Memory</dt><dd>83.4%</dd>
+          <dt>Threshold</dt><dd>80.0%</dd>
+          <dt>Alert</dt><dd>1 warning</dd>
+          <dt>Network</dt><dd>All healthy</dd>
+          <dt>Logs</dt><dd>3 matches</dd>
+        </dl>
+      </article>
+    </section>
+
+    <footer>Read-only checks &middot; DNS, TCP, HTTPS, system resources, service status, and configurable backup verification</footer>
+  </main>
+</body>
+</html>

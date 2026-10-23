@@ -221,6 +221,14 @@ Example console summary:
 }
 ```
 
+## Screenshots
+
+The repository includes a public verification preview generated from the actual Windows and Ubuntu/WSL test results:
+
+![Linux Server Monitor verification results](docs/monitoring-results.png)
+
+The editable preview source is [docs/monitoring-results.html](docs/monitoring-results.html). It contains no credentials, private logs, or personal machine paths.
+
 ## Testing
 
 Run all deterministic tests after activating the relevant environment:
