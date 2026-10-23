@@ -157,6 +157,17 @@ bash scripts/health_check.sh
 
 On Linux, `services` in `config/config.json` can contain service names such as `cron` or `ssh`. The tool runs read-only `systemctl is-active` checks. A service status such as `inactive` is reported as information and does not currently create a resource-threshold alert. Reading protected logs may require appropriate user permissions; this project intentionally analyzes only the supplied sample log by default.
 
+## Verified Cross-Platform Results
+
+The same project and configuration were run in both environments:
+
+| Environment | Result | Notes |
+| --- | --- | --- |
+| Windows project-local Conda environment | `warning` | Memory measured `83.4%`, above the `80%` threshold; network checks passed |
+| Ubuntu through WSL | `healthy` | Memory measured `7.6%`; DNS, TCP, and HTTPS checks passed |
+
+Both runs detected the same three sample-log entries. The different resource values are expected because Windows and WSL expose different system views. On Ubuntu, `cron` was active and `ssh` was inactive; service state is reported informationally and does not create a resource alert.
+
 ## Configuration
 
 Edit `config/config.json`:
@@ -220,13 +231,18 @@ python -m pytest -q
 
 The tests mock system metrics and external network operations. They cover normal and high values, threshold boundaries, unsupported metrics, log level counting, missing and unreadable logs, alert contents, DNS/TCP/HTTP success and failure, disabled and invalid network configuration, existing/missing/empty/stale backups, disabled and invalid backup configuration, and JSON/CSV output. They never depend on live internet access, real backup locations, or the development computer's actual CPU or memory load.
 
-The verified WSL run produced:
+The verified Windows and WSL runs produced:
 
 ```text
-23 passed
-health_status: healthy
-alerts: 0
-log_matches: 3
+Windows: 23 passed
+Ubuntu/WSL: 23 passed
+
+Ubuntu/WSL health_status: healthy
+Ubuntu/WSL alerts: 0
+Ubuntu/WSL log_matches: 3
+
+Windows health_status: warning
+Windows alert: memory_percent was 83.4% against an 80% threshold
 ```
 
 ## Troubleshooting
